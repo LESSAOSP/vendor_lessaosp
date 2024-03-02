@@ -14,9 +14,9 @@
 # limitations under the License.
 
 # -----------------------------------------------------------------
-# PixelOS OTA update package
+# LESSAOSP OTA update package
 
-CUSTOM_TARGET_PACKAGE := $(PRODUCT_OUT)/$(CUSTOM_VERSION).zip
+CUSTOM_TARGET_PACKAGE := $(PRODUCT_OUT)/$(LESSAOSP_VERSION).zip
 MD5 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/md5sum
 
 .PHONY: bacon

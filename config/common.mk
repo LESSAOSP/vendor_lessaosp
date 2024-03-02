@@ -4,7 +4,7 @@ $(call inherit-product-if-exists, vendor/extra/product.mk)
 # Google Apps
 $(call inherit-product, vendor/gms/products/gms.mk)
 
-PRODUCT_BRAND ?= PixelOS
+PRODUCT_BRAND ?= LESSAOSP
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -29,14 +29,14 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/aosp/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/aosp/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions
+    vendor/lessaosp/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/lessaosp/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
-    vendor/aosp/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/aosp/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/aosp/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/lessaosp/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/lessaosp/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/lessaosp/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/backuptool_ab.sh \
@@ -53,7 +53,7 @@ endif
 TARGET_CALL_RECORDING_SUPPORTED ?= true
 ifneq ($(TARGET_CALL_RECORDING_SUPPORTED),false)
 PRODUCT_COPY_FILES += \
-    vendor/aosp/config/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml
+    vendor/lessaosp/config/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml
 endif
 
 # Enable SIP+VoIP on all targets
@@ -91,18 +91,18 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # Google Photos Pixel Exclusive XML
 PRODUCT_COPY_FILES += \
-    vendor/aosp/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml
+    vendor/lessaosp/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml
 
 # Lineage-specific file
 PRODUCT_COPY_FILES += \
-    vendor/aosp/config/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-lineagehw.xml
+    vendor/lessaosp/config/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-lineagehw.xml
 
 # Overlay
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural;com.google.android.systemui.gxoverlay
 
 # Include font files
-include vendor/aosp/config/fonts.mk
+include vendor/lessaosp/config/fonts.mk
 
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
@@ -121,7 +121,7 @@ SYSTEMUI_OPTIMIZE_JAVA ?= true
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
 # Bootanimation
-include vendor/aosp/config/bootanimation.mk
+include vendor/lessaosp/config/bootanimation.mk
 
 # BtHelper
 PRODUCT_PACKAGES += \
@@ -176,7 +176,7 @@ PRODUCT_PACKAGES += \
     start-ssh
 
 PRODUCT_COPY_FILES += \
-    vendor/aosp/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
+    vendor/lessaosp/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
 
 # rsync
 PRODUCT_PACKAGES += \
@@ -221,10 +221,10 @@ $(call inherit-product, vendor/microsoft/packages.mk)
 
 # Overlays
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
-    vendor/aosp/overlay
+    vendor/lessaosp/overlay
 
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/aosp/overlay/common
+    vendor/lessaosp/overlay/common
 
 PRODUCT_PACKAGES += \
     AndroidBlackThemeOverlay \
@@ -248,9 +248,9 @@ CUSTOM_LOCALES += \
     cy_GB \
     fur_IT
 
-include vendor/aosp/config/version.mk
+include vendor/lessaosp/config/version.mk
 
 # OTA
-$(call inherit-product, vendor/aosp/config/ota.mk)
+$(call inherit-product, vendor/lessaosp/config/ota.mk)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk

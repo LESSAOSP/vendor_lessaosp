@@ -1,2 +1,2 @@
-# Include PixelOS versions
-include $(TOPDIR)vendor/aosp/build/core/main_version.mk
+# Include LESSAOSP versions
+include $(TOPDIR)vendor/lessaosp/build/core/main_version.mk
