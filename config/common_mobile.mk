@@ -1,5 +1,5 @@
-# Inherit common mobile DerpFest stuff
-$(call inherit-product, vendor/derp/config/common.mk)
+# Inherit common mobile LessAOSP stuff
+$(call inherit-product, vendor/lessaosp/config/common.mk)
 
 # Apps
 PRODUCT_PACKAGES += \
@@ -8,20 +8,20 @@ PRODUCT_PACKAGES += \
 
 ifeq ($(PRODUCT_TYPE), go)
 PRODUCT_PACKAGES += \
-    DerpLauncherQuickStepGo
+    LessAOSPLauncherQuickStepGo
 
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    DerpLauncherQuickStepGo
+    LessAOSPLauncherQuickStepGo
 else
 PRODUCT_PACKAGES += \
-    DerpLauncherQuickStep
+    LessAOSPLauncherQuickStep
 
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    DerpLauncherQuickStep
+    LessAOSPLauncherQuickStep
 endif
 
 PRODUCT_PACKAGES += \
-    DerpLauncherOverlay
+    LessAOSPLauncherOverlay
 
 # Customizations
 PRODUCT_PACKAGES += \

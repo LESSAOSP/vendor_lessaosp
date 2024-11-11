@@ -6,12 +6,12 @@ import (
 	"android/soong/android"
 )
 
-func derpExpandVariables(ctx android.ModuleContext, in string) string {
-	derpVars := ctx.Config().VendorConfig("derpVarsPlugin")
+func lessaospExpandVariables(ctx android.ModuleContext, in string) string {
+	lessaospVars := ctx.Config().VendorConfig("lessaospVarsPlugin")
 
 	out, err := android.Expand(in, func(name string) (string, error) {
-		if derpVars.IsSet(name) {
-			return derpVars.String(name), nil
+		if lessaospVars.IsSet(name) {
+			return lessaospVars.String(name), nil
 		}
 		// This variable is not for us, restore what the original
 		// variable string will have looked like for an Expand

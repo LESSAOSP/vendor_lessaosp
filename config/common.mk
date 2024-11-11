@@ -1,7 +1,7 @@
 # Allow vendor/extra to override any property by setting it first
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 
-PRODUCT_BRAND ?= DerpFest
+PRODUCT_BRAND ?= LessAOSP
 
 PRODUCT_BUILD_PROP_OVERRIDES += DateUtc=0
 
@@ -27,18 +27,18 @@ endif
 # Backup Tool
 ifneq ($(TARGET_EXCLUDE_BACKUPTOOL),true)
 PRODUCT_COPY_FILES += \
-    vendor/derp/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/derp/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/derp/prebuilt/common/bin/50-derp.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-derp.sh
+    vendor/lessaosp/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/lessaosp/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/lessaosp/prebuilt/common/bin/50-lessaosp.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-lessaosp.sh
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
-    system/addon.d/50-derp.sh
+    system/addon.d/50-lessaosp.sh
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
-    vendor/derp/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/derp/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/derp/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/lessaosp/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/lessaosp/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/lessaosp/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/backuptool_ab.sh \
@@ -52,9 +52,12 @@ PRODUCT_SYSTEM_PROPERTIES += \
     ro.ota.allow_downgrade=true
 endif
 
-# DerpFest-specific init rc file
+# BootAnimation
+include vendor/lessaosp/config/bootanimation.mk
+
+# LessAOSP-specific init rc file
 PRODUCT_COPY_FILES += \
-    vendor/derp/prebuilt/common/etc/init/init.derp-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.derp-system_ext.rc
+    vendor/lessaosp/prebuilt/common/etc/init/init.lessaosp-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.lessaosp-system_ext.rc
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -95,19 +98,19 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     fw.max_users=32
 
 # Include extra packages
-include vendor/derp/config/packages.mk
+include vendor/lessaosp/config/packages.mk
 
 # Permissions for Google product apps
 PRODUCT_COPY_FILES += \
-    vendor/derp/prebuilt/common/etc/permissions/default-permissions-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/default-permissions-product.xml
+    vendor/lessaosp/prebuilt/common/etc/permissions/default-permissions-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/default-permissions-product.xml
 
 # Livedisplay
 PRODUCT_COPY_FILES += \
-    vendor/derp/prebuilt/common/etc/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-lineagehw.xml
+    vendor/lessaosp/prebuilt/common/etc/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-lineagehw.xml
 
 # ANGLE
 PRODUCT_COPY_FILES += \
-    vendor/derp/prebuilt/common/etc/permissions/product-privapp-permissions-aosp.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/product-privapp-permissions-aosp.xml
+    vendor/lessaosp/prebuilt/common/etc/permissions/product-privapp-permissions-aosp.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/product-privapp-permissions-aosp.xml
 
 # Strip the local variable table and the local variable type table to reduce
 # the size of the system image. This has no bearing on stack traces, but will
@@ -126,10 +129,10 @@ TARGET_SCREEN_WIDTH ?= 1080
 TARGET_SCREEN_HEIGHT ?= 1920
 
 PRODUCT_COPY_FILES += \
-    vendor/derp/prebuilt/common/etc/init/init.derp-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.derp-updater.rc
+    vendor/lessaosp/prebuilt/common/etc/init/init.lessaosp-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.lessaosp-updater.rc
 
 PRODUCT_COPY_FILES += \
-    vendor/derp/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
+    vendor/lessaosp/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
 
 # Google Assistant
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -181,7 +184,7 @@ PRODUCT_PACKAGES += \
 
 # SystemUI
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    DerpLauncherQuickStep \
+    LessAOSPLauncherQuickStep \
     Settings \
     SystemUI
 
@@ -195,15 +198,15 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Don't compile SystemUITests
 EXCLUDE_SYSTEMUI_TESTS := true
 
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/derp/overlay/no-rro
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/lessaosp/overlay/no-rro
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/derp/overlay/common \
-    vendor/derp/overlay/no-rro
+    vendor/lessaosp/overlay/common \
+    vendor/lessaosp/overlay/no-rro
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 
 # Art
-include vendor/derp/config/art.mk
+include vendor/lessaosp/config/art.mk
 
 # Versioning
-include vendor/derp/config/version.mk
+include vendor/lessaosp/config/version.mk

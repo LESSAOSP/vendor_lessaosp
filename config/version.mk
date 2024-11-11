@@ -1,5 +1,6 @@
 # Copyright (C) 2016-2017 AOSiP
 # Copyright (C) 2022 DerpFest
+# Copyright (C) 2024 LessAOSP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,44 +15,44 @@
 # limitations under the License.
 
 # Versioning System
-ifeq ($(DERP_VERSION_APPEND_TIME_OF_DAY),true)
+ifeq ($(LESSAOSP_VERSION_APPEND_TIME_OF_DAY),true)
     BUILD_DATE := $(shell date +%Y%m%d-%H%M)
 else
     BUILD_DATE := $(shell date +%Y%m%d)
 endif
 
-TARGET_PRODUCT_SHORT := $(subst derp_,,$(DERP_BUILDTYPE))
+TARGET_PRODUCT_SHORT := $(subst lessaosp_,,$(LESSAOSP_BUILDTYPE))
 
-DERP_BUILDTYPE ?= Community
-DERP_STATUS := Stable
-DERP_BUILD_VERSION := $(PLATFORM_VERSION)
-DERP_VERSION := $(DERP_BUILD_VERSION)-$(DERP_BUILDTYPE)-$(DERP_STATUS)-$(DERP_BUILD)-$(BUILD_DATE)
-ROM_FINGERPRINT := DerpFest/$(PLATFORM_VERSION)/$(TARGET_PRODUCT_SHORT)/$(shell date +%H%M)
+LESSAOSP_BUILDTYPE ?= Community
+LESSAOSP_STATUS := Stable
+LESSAOSP_BUILD_VERSION := $(PLATFORM_VERSION)
+LESSAOSP_VERSION := $(LESSAOSP_BUILD_VERSION)-$(LESSAOSP_BUILDTYPE)-$(LESSAOSP_STATUS)-$(LESSAOSP_BUILD)-$(BUILD_DATE)
+ROM_FINGERPRINT := LessAOSP/$(PLATFORM_VERSION)/$(TARGET_PRODUCT_SHORT)/$(shell date +%H%M)
 
-ifeq ($(DERP_BUILDTYPE), CI)
+ifeq ($(LESSAOSP_BUILDTYPE), CI)
     BUILD_KEYS := release-keys
 endif
 
 PRODUCT_SYSTEM_PROPERTIES += \
-  ro.derp.build.version=$(DERP_BUILD_VERSION) \
-  ro.derp.build.date=$(BUILD_DATE) \
-  ro.derp.buildtype=$(DERP_BUILDTYPE) \
-  ro.derp.fingerprint=$(ROM_FINGERPRINT) \
-  ro.derp.version=$(DERP_VERSION) \
-  ro.modversion=$(DERP_VERSION)
+  ro.lessaosp.build.version=$(LESSAOSP_BUILD_VERSION) \
+  ro.lessaosp.build.date=$(BUILD_DATE) \
+  ro.lessaosp.buildtype=$(LESSAOSP_BUILDTYPE) \
+  ro.lessaosp.fingerprint=$(ROM_FINGERPRINT) \
+  ro.lessaosp.version=$(LESSAOSP_VERSION) \
+  ro.modversion=$(LESSAOSP_VERSION)
 
 ifneq ($(OVERRIDE_OTA_CHANNEL),)
 PRODUCT_SYSTEM_PROPERTIES += \
-    derp.updater.uri=$(OVERRIDE_OTA_CHANNEL)
+    lessaosp.updater.uri=$(OVERRIDE_OTA_CHANNEL)
 endif
 
 # Signing
 ifneq (eng,$(TARGET_BUILD_VARIANT))
-ifneq (,$(wildcard vendor/derp/signing/keys/releasekey.pk8))
-PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/derp/signing/keys/releasekey
+ifneq (,$(wildcard vendor/lessaosp/signing/keys/releasekey.pk8))
+PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/lessaosp/signing/keys/releasekey
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.oem_unlock_supported=1
 endif
-ifneq (,$(wildcard vendor/derp/signing/keys/otakey.x509.pem))
-PRODUCT_OTA_PUBLIC_KEYS := vendor/derp/signing/keys/otakey.x509.pem
+ifneq (,$(wildcard vendor/lessaosp/signing/keys/otakey.x509.pem))
+PRODUCT_OTA_PUBLIC_KEYS := vendor/lessaosp/signing/keys/otakey.x509.pem
 endif
 endif

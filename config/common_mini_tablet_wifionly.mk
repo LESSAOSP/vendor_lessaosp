@@ -1,7 +1,7 @@
-# Inherit mobile mini common DerpFest stuff
-$(call inherit-product, vendor/derp/config/common_mobile_mini.mk)
+# Inherit mobile mini common LessAOSP stuff
+$(call inherit-product, vendor/lessaosp/config/common_mobile_mini.mk)
 
-# Inherit tablet common DerpFest stuff
-$(call inherit-product, vendor/derp/config/tablet.mk)
+# Inherit tablet common LessAOSP stuff
+$(call inherit-product, vendor/lessaosp/config/tablet.mk)
 
-$(call inherit-product, vendor/derp/config/wifionly.mk)
+$(call inherit-product, vendor/lessaosp/config/wifionly.mk)

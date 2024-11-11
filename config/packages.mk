@@ -1,8 +1,8 @@
-# DerpFest packages
+# LessAOSP packages
 PRODUCT_PACKAGES += \
     BatteryStatsViewer \
     Datura \
-    DerpSetupWizard \
+    LessAOSPSetupWizard \
     GameSpace \
     NetworkStackOverlay \
     NetworkStackMainlineOverlay \
@@ -16,8 +16,8 @@ PRODUCT_PACKAGES += \
 
 # Themes
 PRODUCT_PACKAGES += \
-    DerpThemesStub \
-    DerpWalls \
+    LessAOSPThemesStub \
+    LessAOSPWalls \
     ThemePicker
 
 # Build changelog
@@ -30,7 +30,7 @@ PRODUCT_PACKAGES += \
     UdfpsIcons
 endif
 
-# Extra tools in DerpFest
+# Extra tools in LessAOSP
 PRODUCT_PACKAGES += \
     bash \
     curl \

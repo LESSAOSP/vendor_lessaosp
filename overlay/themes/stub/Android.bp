@@ -22,7 +22,7 @@ package {
 
 android_app {
 
-    name: "DerpThemesStub",
+    name: "LessAOSPThemesStub",
     optimize: {
         enabled: false,
     },
